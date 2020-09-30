@@ -1,0 +1,200 @@
+/*显示点击是哪个字母*/
+
+.showLetter {
+    position: fixed;
+    color: #105eae;
+    width: 50px;
+    height: 50px;
+    top: 45%;
+    left: 45%;
+    border-radius: 50%;
+    border: #105eae 1px solid;
+    text-align: center;
+    display: none;
+}
+
+.showLetter span {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px;
+}
+
+.seach {
+    width: 90%;
+    height: 45px;
+    padding-top: 10px;
+    background: #fff;
+}
+
+.seach input {
+    width: 90%;
+    height: 45px;
+    font-size: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid #eee;
+    color: #000
+}
+
+/*城市弹层*/
+
+.container {
+    width: 3.43rem;
+    padding: 0 0.16rem;
+    margin: 0 auto;
+    overflow-y: scroll;
+}
+
+.container .searchC {
+    margin-top: 0.15rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    border-bottom: 1px solid rgba(223, 226, 230, 1);
+    font-size: 0.15rem;
+    color: rgba(8, 16, 26, 1);
+}
+
+.container .citySearch {
+    height: 0.4rem;
+    margin-top: 0.08rem;
+    margin-bottom: 1px;
+}
+
+.container .citySearch span:nth-of-type(1) {
+    display: inline-block;
+    width: 3rem;
+    height: 0.39rem;
+    line-height: 0.39rem;
+    margin-right: 0.08rem;
+    border-radius: 0.2rem;
+    border: 1px solid rgba(223, 226, 230, 1);
+}
+
+.container .citySearch span:nth-of-type(1) input {
+    margin-left: 0.16rem;
+    font-size: 0.15rem;
+    width: 2.8rem;
+}
+
+.container .citySearch span:nth-of-type(2) {
+    font-size: 0.15rem;
+    color: rgba(39, 130, 244, 1);
+}
+
+.container .nowPosition {
+    margin: 0.16rem 0;
+}
+
+.container .nowPosition h2 {
+    font-size: 0.15rem;
+    color: rgba(8, 16, 26, 1);
+    padding-bottom: 0.08rem;
+}
+
+.container .nowPosition a {
+    display: block;
+    width: 0.75rem;
+    height: 0.35rem;
+    line-height: 0.35rem;
+    text-align: center;
+    border-radius: 0.02rem;
+    border: 1px solid rgba(39, 130, 244, 1);
+}
+
+.container .nowPosition a em {
+    display: inline-block;
+    font-size: 0.14rem;
+    color: rgba(39, 130, 244, 1);
+    background: url('../img/icon_adress.png') no-repeat left center;
+    background-size: 0.14rem 0.14rem;
+    padding-left: 0.14rem;
+
+}
+
+.letter {
+    width: auto;
+    position: fixed;
+    top: 1.8rem;
+    right: 0.06rem;
+    text-align: center;
+}
+
+.letter ul {
+    list-style-type: none;
+}
+
+.letter ul li a {
+    text-decoration: none;
+    font-size: 0.12rem;
+    color: rgba(159, 166, 174, 1);
+}
+
+.city {
+    width: 100%;
+}
+
+.tips {
+    font-size: 0.15rem;
+    color: rgba(8, 16, 26, 1);
+}
+
+.history {
+    margin-top: 15px;
+}
+
+.hot {
+    overflow: hidden;
+}
+
+.hot div {
+    display: inline-block;
+    text-align: center;
+    line-height: 0.35rem;
+    color: #afafaf;
+    margin: 0.08rem 0.08rem 0.08rem 0;
+    width: 0.75rem;
+    height: 0.35rem;
+    border-radius: 2px;
+    border: 1px solid rgba(198, 205, 213, 1);
+    font-size: 0.14rem;
+    color: rgba(8, 16, 26, 1);
+}
+
+.clear-history {
+    display: block;
+    float: right;
+}
+
+.city-list {
+    width: 100%;
+}
+
+.city-list .city-letter {
+    font-size: 0.2rem;
+    display: inline-block;
+    padding-top: 0.15rem;
+    padding-bottom: 0.05rem;
+    border-bottom: 1px solid #e8ecf1;
+    width: 100%;
+}
+
+.city-list p {
+    color: #afafaf;
+    width: 95%;
+    min-height: 0.5rem;
+    line-height: 0.5rem;
+    border-bottom: 1px solid #e8ecf1;
+    cursor: pointer;
+    font-size: 0.15rem;
+    color: rgba(8, 16, 26, 1);
+}
+
+.city-letter {
+    font-size: 0.14rem !important;
+    color: rgba(159, 166, 174, 1) !important;
+}
+
+.UISelect {
+    margin-top: 5px
+}

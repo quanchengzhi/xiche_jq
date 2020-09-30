@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>优惠洗车</title>
+    <link media="all" rel="stylesheet" href="static/css/init.css" type="text/css">
+    <link media="all" rel="stylesheet" href="static/css/index.css" type="text/css">
+</head>
+
+<body>
+    <div class="wrapper clear">
+        <div class="search">
+            <a href="./cityChoose.html" class="positionPic"></a>
+            <a href="./search.html" class="frame">
+                <span class="searchPic"></span>
+                <input type="text" readonly placeholder="搜索你感兴趣的门店">
+            </a>
+        </div>
+        <div class="menu">
+            <a href="./myCoupons.html" class="icon_coupons">我的洗车券</a>
+            <a href="./order.html" class="icon_order">我的订单</a>
+        </div>
+        <div class="img_vavancy"></div>
+    </div>
+    <script src="./static/js/rem.js"></script>
+    <script src="./static/js/jquery-1.9.1.js"></script>
+    <script src="./static/js/common.js"></script>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=68034e8a8aad2873b85026e9d51315a2&plugin=AMap.CitySearch"></script>
+    <script type="text/javascript">
+        //获取用户所在城市信息
+        function showCityInfo() {
+            localCity = decodeURIComponent(window.location.search.substr(1)).replace(/[^\u4e00-\u9fa5|]+/,'')
+            //实例化城市查询类
+            var citysearch = new AMap.CitySearch();
+            //自动获取用户IP，返回当前城市
+            citysearch.getLocalCity(function(status, result) {
+                if (status === 'complete' && result.info === 'OK') {
+                    if (result && result.city && result.bounds) {
+                        var cityinfo = result.city;
+                        var citybounds = result.bounds;
+                        if(!localCity){
+                            $('.positionPic').text( cityinfo);
+                        }else{
+                            $('.positionPic').text( localCity);
+                        }
+                        //地图显示当前城市
+                        // map.setBounds(citybounds);
+                    }
+                } else {
+                    $('.positionPic').text( cityinfo);
+                }
+            });
+        }
+        showCityInfo();
+    </script>
+</body>
+
+</html>

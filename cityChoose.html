@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>城市选择</title>
+
+    <link href="./static/css/style.css" rel="stylesheet" type="text/css">
+    <link href="./static/css/init.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <!--显示点击的是哪一个字母-->
+    <div id="showLetter" class="showLetter allInfo"><span class="letterHead">A</span></div>
+    <!--城市索引查询-->
+    <div class="letter allInfo">
+        <ul>
+            <li><a href="javascript:;">A</a></li>
+            <li><a href="javascript:;">B</a></li>
+            <li><a href="javascript:;">C</a></li>
+            <li><a href="javascript:;">D</a></li>
+            <li><a href="javascript:;">E</a></li>
+            <li><a href="javascript:;">F</a></li>
+            <li><a href="javascript:;">G</a></li>
+            <li><a href="javascript:;">H</a></li>
+            <li><a href="javascript:;">J</a></li>
+            <li><a href="javascript:;">K</a></li>
+            <li><a href="javascript:;">L</a></li>
+            <li><a href="javascript:;">M</a></li>
+            <li><a href="javascript:;">N</a></li>
+            <li><a href="javascript:;">P</a></li>
+            <li><a href="javascript:;">Q</a></li>
+            <li><a href="javascript:;">R</a></li>
+            <li><a href="javascript:;">S</a></li>
+            <li><a href="javascript:;">T</a></li>
+            <li><a href="javascript:;">W</a></li>
+            <li><a href="javascript:;">X</a></li>
+            <li><a href="javascript:;">Y</a></li>
+            <li><a href="javascript:;">Z</a></li>
+        </ul>
+    </div>
+    <!--城市列表-->
+    <div class="container " id="container">
+        <div class="citySearch"><span><input class="searchCity" type="text" placeholder="请输入城市"></span><span
+                id="cityS">搜索</span></div>
+        <div class="nowPosition allInfo">
+            <h2>当前定位城市</h2>
+            <a href="./index.html"><em class="position">深圳</em></a>
+        </div>
+        <div class="city allInfo">
+
+        </div>
+    </div>
+    <script src="./static/js/rem.js"></script>
+    <script type="text/javascript" src="./static/js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="./static/js/zepto.js"></script>
+    <script type="text/javascript" src="./static/js/city.js"></script>
+    <script src="./static/js/common.js"></script>
+    <script type="text/javascript"
+        src="https://webapi.amap.com/maps?v=1.4.15&key=68034e8a8aad2873b85026e9d51315a2&plugin=AMap.CitySearch"></script>
+    <script>
+        $(function () {
+            function showCityInfo() {
+
+
+                var citysearch = new AMap.CitySearch();
+                //自动获取用户IP，返回当前城市
+
+                citysearch.getLocalCity(function (status, result) {
+                    if (status === 'complete' && result.info === 'OK') {
+                        if (result && result.city && result.bounds) {
+                            var cityinfo = result.city;
+                            var citybounds = result.bounds;
+                            $('.position').text(cityinfo);
+                            //地图显示当前城市
+                            // map.setBounds(citybounds);
+                        }
+                    } else {
+                        $('.position').text(cityinfo);
+                    }
+                });
+            }
+            showCityInfo();
+        })
+    </script>
+</body>
+
+</html>

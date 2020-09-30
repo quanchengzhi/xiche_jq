@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>优惠洗车</title>
+    <link media="all" rel="stylesheet" href="static/css/init.css" type="text/css">
+    <link media="all" rel="stylesheet" href="static/css/index.css" type="text/css">
+    <link media="all" rel="stylesheet" href="static/css/mescroll.min.css" type="text/css">
+</head>
+
+<body>
+    <div class="wrapper clearfix ">
+        <div class="mescroll" id="mescroll">
+            <div class="search firstHide">
+                <a href="./cityChoose.html" class="positionPic ellipsis"></a>
+                <a href="./search.html" class="frame">
+                    <span class="searchPic"></span>
+                    <input type="text" readonly placeholder="搜索你感兴趣的门店">
+                </a>
+            </div>
+            <div class="menu firstHide">
+                <a href="./myCoupons.html" class="icon_coupons">我的洗车券</a>
+                <a href="./order.html" class="icon_order">我的订单</a>
+            </div>
+            <div class="coupons firstHide">
+                <p><span>标准洗车券 (全城通用)</span><span><i>¥</i>30</span></p>
+                <p>支持7座及以下轿车标准洗车1次</p>
+                <a href="./confirmOrder.html">立即购买</a>
+            </div>
+            <div class="store">
+                <h2>适用以下329家门店</h2>
+                <div class="storeMenu">
+                    <span class="cityChoose checked">全市</span>
+                    <span class="otherChoose">销量最多</span>
+                    <span class="otherChoose">好评最多</span>
+                    <a href="./storeMap.html" class="mapIcon ">地图选店</a>
+                </div>
+                <ul class="cityAreas allHide thisHide">
+                    <li>全市</li>
+                    <li>罗湖区</li>
+                    <li>福田区</li>
+                    <li>南山区</li>
+                    <li>宝安区</li>
+                    <li>龙岗区</li>
+                    <li>盐田区</li>
+                    <li>龙华区</li>
+                </ul>
+            </div>
+
+            <ul class="allStoreInfo" id="allStoreInfo">
+                <!-- <li class="storeInfo">
+                    <span class="storePic"></span>
+                    <span class="storeText">
+                        <p>中泰汽车美容护理中心</p>
+                        <p>
+                            <span>4.5</span>
+                            <span>7399<em class="gray">单</em></span>
+                        </p>
+                        <p>
+                            <span class=".ellipsis">
+                                深圳市宝安区西乡盐田…
+                                <em>2.4km</em>
+                            </span>
+                        </p>
+                    </span>
+                </li> -->
+            </ul>
+
+            <div class="img clearfix">
+                <a href="tel:0755-23711823"></a>
+                <p class="toTop"></p>
+            </div>
+            <div class="callKefu thisHide">
+                <p>0755-23711823</p>
+                <p><span class="callCancel">取消</span><a href="tel:0755-23711823">拨打</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="bgBlack allHide thisHide"></div>
+    <script src="./static/js/rem.js"></script>
+    <script src="./static/js/jquery-1.9.1.js"></script>
+    <script src="./static/js/mescroll.min.js"></script>
+    <script src="./static/js/myScroll.js"></script>
+    <script src="./static/js/common.js"></script>
+    <script type="text/javascript"
+        src="https://webapi.amap.com/maps?v=1.4.15&key=68034e8a8aad2873b85026e9d51315a2&plugin=AMap.CitySearch"></script>
+    <script type="text/javascript">
+        //获取用户所在城市信息
+        function showCityInfo() {
+            localCity = decodeURIComponent(window.location.search.substr(1)).replace(/[^\u4e00-\u9fa5|]+/, '')
+            //实例化城市查询类
+            var citysearch = new AMap.CitySearch();
+            //自动获取用户IP，返回当前城市
+            citysearch.getLocalCity(function (status, result) {
+                if (status === 'complete' && result.info === 'OK') {
+                    if (result && result.city && result.bounds) {
+                        var cityinfo = result.city;
+                        var citybounds = result.bounds;
+                        if (!localCity) {
+                            $('.positionPic').text(cityinfo);
+                        } else {
+                            $('.positionPic').text(localCity);
+                        }
+                        //地图显示当前城市
+                        // map.setBounds(citybounds);
+                    }
+                } else {
+                    $('.positionPic').text(cityinfo);
+                }
+            });
+        }
+        showCityInfo();
+    </script>
+</body>
+
+</html>

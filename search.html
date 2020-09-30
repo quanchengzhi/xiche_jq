@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>优惠洗车</title>
+    <link media="all" rel="stylesheet" href="static/css/init.css" type="text/css">
+    <link media="all" rel="stylesheet" href="static/css/index.css" type="text/css">
+    <link media="all" rel="stylesheet" href="static/css/mescroll.min.css" type="text/css">
+</head>
+
+<body>
+    <div class="sWrapper">
+        <div class="sSearch">
+            <span class="sFrame">
+                <input id="searchStore" type="text" name="" id="" placeholder="搜索你感兴趣的门店">
+                <span class="empty thisHide"></span>
+            </span>
+            <a href="./index.html" class="sCancel">取消</a>
+        </div>
+
+    </div>
+    <ul class="allSStores thisHide" id="allSStores">
+        <!-- <li class="sStore clearfix" id="sStore">
+            <span class="iconStore"></span>
+            <a href="#" class="storeInfo">
+                <p>中泰汽车美容护理中心</p>
+                <p>
+                    <span>南山区南山大道3698号设计园</span>
+                    <span>300m</span>
+                </p>
+            </a>
+        </li> -->
+    </ul>
+    <script src="./static/js/rem.js"></script>
+    <script src="./static/js/jquery-1.9.1.js"></script>
+    <script src="./static/js/common.js"></script>
+    <script>
+        $(function () {
+            var listData = [],
+                keyWord = null;
+            $('#searchStore').on('input', function () {
+                $('.allSStores').empty();
+                if ($(this).val()) {
+                    $('.empty').removeClass('thisHide')
+                } else {
+                    $('.empty').addClass('thisHide')
+                }
+                keyWord = $(this).val();
+                getListDataFromNet(keyWord,window);
+                
+            })
+            $('.empty').on('click', function () {
+                $('#searchStore').val('');
+                keyWord = null;
+                getListDataFromNet(keyWord,window);
+                $('.empty').addClass('thisHide')
+            })
+
+            function setListData() {
+                var listDom = document.getElementById("allSStores");
+                var listDataG = window.listData;
+                for (var i = 0; i < listDataG.length; i++) {
+                    var str = `
+                <span class="iconStore"></span>
+                <a href="./storeMap.html" class="storeInfo">
+                    <p>`+ listDataG[i].name + `</p>
+                    <p>
+                    <span>`+ listDataG[i].position + `</span>
+                    <span>`+ listDataG[i].distance + `</span>
+                    </p>
+                </a>
+                `;
+                    var liDom = document.createElement("li");
+                    liDom.innerHTML = str;
+                    liDom.className = 'sStore '
+                    listDom.appendChild(liDom);
+                }
+
+            }
+
+            function getListDataFromNet(keyWord,win) {
+                listData = [];
+                $.ajax({
+                    type: 'GET',
+                    url: './static/json/search.json',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (keyWord) {
+                            for (var i = 0; i < data.length; i++) {
+                                if (data[i].name.indexOf(keyWord) != -1) {
+                                    listData.push(data[i]);
+                                }
+                            }
+                        }
+                        if (listData.length > 0) {
+                            $('.allSStores').removeClass('thisHide')
+                        } else {
+                            $('.allSStores').addClass('thisHide')
+                        }
+                        win.listData = listData;
+                        console.log(window.listData);
+                        setListData();
+                    }
+                })
+            }
+
+        })
+
+    </script>
+</body>
+
+</html>

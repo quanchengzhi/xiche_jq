@@ -1,0 +1,119 @@
+[
+    {
+        "type": "待支付",
+        "btnText": "去支付",
+        "bg": "#2782F4",
+        "color": "#fff",
+        "borderColor": "#2782F4",
+        "href": "./noPay.html",
+        "href1": "./confirmOrder.html"
+    },
+    {
+        "type": "待消费",
+        "btnText": "查看券码",
+        "bg": "#fff",
+        "color": "#08101A",
+        "borderColor": "#C6CDD5",
+        "href": "./noConsumed.html",
+        "href1": "#"
+    },
+    {
+        "type": "待评价",
+        "btnText": "去评价",
+        "bg": "#fff",
+        "color": "#08101A",
+        "borderColor": "#C6CDD5",
+        "href": "./noComment.html",
+        "href1": "./comment.html"
+    },
+    {
+        "type": "已完成",
+        "btnText": "再来一单",
+        "bg": "#fff",
+        "color": "#08101A",
+        "borderColor": "#C6CDD5",
+        "href": "./done.html",
+        "href1": "#"
+    },
+    {
+        "type": "已取消",
+        "btnText": "",
+        "bg": "#fff",
+        "color": "#fff",
+        "borderColor": "#fff",
+        "href": "./canceled.html",
+        "href1": "#"
+    },
+    {
+        "type": "退款中",
+        "btnText": "",
+        "bg": "#fff",
+        "color": "#fff",
+        "borderColor": "#fff",
+        "href": "./inRefund.html",
+        "href1": "#"
+    },
+    {
+        "type": "已退款",
+        "btnText": "",
+        "bg": "#fff",
+        "color": "#fff",
+        "borderColor": "#fff",
+        "href": "./refunded.html",
+        "href1": "#"
+    },
+    {
+        "type": "待支付",
+        "btnText": "去支付",
+        "bg": "#2782F4",
+        "color": "#fff",
+        "borderColor": "#2782F4",
+        "href": "./noPay.html",
+        "href1": "./confirmOrder.html"
+    },
+    {
+        "type": "待支付",
+        "btnText": "去支付",
+        "bg": "#2782F4",
+        "color": "#fff",
+        "borderColor": "#2782F4",
+        "href": "./noPay.html",
+        "href1": "./confirmOrder.html"
+    },
+    {
+        "type": "待支付",
+        "btnText": "去支付",
+        "bg": "#2782F4",
+        "color": "#fff",
+        "borderColor": "#2782F4",
+        "href": "./noPay.html",
+        "href1": "./confirmOrder.html"
+    },
+    {
+        "type": "待支付",
+        "btnText": "去支付",
+        "bg": "#2782F4",
+        "color": "#fff",
+        "borderColor": "#2782F4",
+        "href": "./noPay.html",
+        "href1": "./confirmOrder.html"
+    },
+    {
+        "type": "待支付",
+        "btnText": "去支付",
+        "bg": "#2782F4",
+        "color": "#fff",
+        "borderColor": "#2782F4",
+        "href": "./noPay.html",
+        "href1": "./confirmOrder.html"
+    },
+    {
+        "type": "待支付",
+        "btnText": "去支付",
+        "bg": "#2782F4",
+        "color": "#fff",
+        "borderColor": "#2782F4",
+        "href": "./noPay.html",
+        "href1": "./confirmOrder.html"
+    }
+]

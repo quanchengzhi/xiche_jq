@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>商家详情</title>
+    <link media="all" rel="stylesheet" href="static/css/init.css" type="text/css">
+    <link media="all" rel="stylesheet" href="static/css/index.css" type="text/css">
+    <style>
+        .chageImgContainer {
+            position: absolute;
+            top: 0.12rem;
+            left: 0.16rem;
+            overflow: hidden;
+            z-index: 999;
+        }
+
+        .chageImg {
+            display: flex;
+            width: 3.43rem;
+            height: 3.43rem;
+
+        }
+
+        .thisImg {
+            width: 3.43rem;
+            height: 3.43rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chageImgContainer thisHide">
+        <ul class="chageImg">
+            <li><img class="thisImg" src="./static/img/bg1.jpg" alt=""></li>
+            <li><img class="thisImg" src="./static/img/bg2.jpg" alt=""></li>
+            <li><img class="thisImg" src="./static/img/bg3.jpg" alt=""></li>
+        </ul>
+    </div>
+    <div class="mapWrapper ">
+        <span class="clearfix enlarge"><em>3张</em></span>
+        <div class="mapHead">
+            <div class="storeInfo"><span class="storeCon">
+                    <p>中泰汽车美容护理中心</p>
+                    <p><span>5.0</span><span>7399<em class="gray">单</em></span></p>
+                    <p><em class="gray">营业时间：</em><em>06:00-20:00</em></p>
+                </span></div>
+            <div class="positionInfo">
+                <textarea name="" id="" cols="30" disabled="false"
+                    rows="10">广东省深圳市宝安区西乡盐田宝安大道4004号旭生大厦21楼号旭生大厦21楼号旭生大厦21楼   距您400m</textarea>
+                <span class="tips goThere">去这里</span><a class="tips" href="tel:00000000000">联系商家</a>
+            </div>
+        </div>
+        <div class="storeMap" id="storeMap">
+            <map name=""></map>
+        </div>
+        <div class="mapToKefu"></div>
+        <div class="chooseMap thisHide">
+            <div class="gaode">高德地图</div>
+            <div class="baidu">百度地图</div>
+            <div class="quxiao">取消</div>
+        </div>
+    </div>
+    <script src="./static/js/rem.js"></script>
+    <script src="./static/js/jquery-1.9.1.js"></script>
+    <script src="./static/js/common.js"></script>
+    <script type="text/javascript"
+        src="https://webapi.amap.com/maps?v=1.4.15&key=68034e8a8aad2873b85026e9d51315a2&plugin=AMap.CitySearch"></script>
+    <script>
+        $('.goThere').on('click', function () {
+            $('.chooseMap').removeClass('thisHide');
+        })
+        $('.quxiao').on('click', function () {
+            $('.chooseMap').addClass('thisHide');
+        })
+
+
+        var startPoint;
+        var diffXDistance = 30;
+        var distantce = 0;
+        $('.chageImgContainer')
+            .on('touchstart', function (e) {
+                startPoint = {
+                    x: e.originalEvent.changedTouches[0].pageX,
+                    y: e.originalEvent.changedTouches[0].pageY
+                };
+            })
+            .on('touchmove', function (e) {
+                if (Math.abs(e.originalEvent.changedTouches[0].pageX - startPoint.x) > Math.abs(e.originalEvent.changedTouches[0].pageY - startPoint.y)) {
+                    // event.preventDefault();
+                } else {
+                    canSlide = false;
+                }
+            })
+            .on('touchend', function (e) {
+                var diffX = e.originalEvent.changedTouches[0].pageX - startPoint.x;
+                if (diffX < -diffXDistance) {
+                    //左滑←
+                    if (distantce == -6.86) {
+                        distantce = 0
+                        $('.chageImg').css('transform', 'translateX(' + distantce + 'rem)').css('transition','all .3s')
+                    } else {
+                        distantce -= 3.43;
+                        $('.chageImg').css('transform', 'translateX(' + distantce + 'rem)').css('transition','all .3s')
+                    }
+                } else if (diffX >= diffXDistance) {
+                    //右滑
+                    if (distantce == 0) {
+                        distantce = -6.86
+                        $('.chageImg').css('transform', 'translateX(' + distantce + 'rem)').css('transition','all .3s')
+                    } else {
+                        distantce += 3.43
+                        $('.chageImg').css('transform', 'translateX(' + distantce + 'rem)').css('transition','all .3s')
+                    }
+
+                }
+            })
+    </script>
+    <script>
+
+        $('.enlarge').on('click', function () {
+            $('.enlarge').addClass('thisHide');
+            $('.chageImgContainer').removeClass('thisHide');
+        })
+        $('.chageImgContainer').on('click', function () {
+            $('.chageImgContainer').addClass('thisHide');
+            $('.enlarge').removeClass('thisHide');
+        })
+        
+
+
+        var map = new AMap.Map('storeMap', {
+            resizeEnable: true,
+            center: [113.86366299999997, 22.583792],
+            zoom: 16
+        });
+
+        var marker = new AMap.Marker({
+            position: map.getCenter(),
+            icon: './static/img/map_icon_store_sel.png',
+            offset: new AMap.Pixel(0, 0)
+        });
+
+        marker.setMap(map);
+
+        // 设置鼠标划过点标记显示的文字提示
+        marker.setTitle('我是marker的title');
+
+        // 设置label标签
+        // label默认蓝框白底左上角显示，样式className为：amap-marker-label
+        marker.setLabel({
+            offset: new AMap.Pixel(-53, -20),  //设置文本标注偏移量
+            content: "<div class='info'>中泰汽车美容护理中心</div>", //设置文本标注内容
+            direction: 'top' //设置文本标注方位
+        });
+
+
+
+      
+        $('.storeMap').on('click', '.amap-icon img', function () {
+            $('.storeMap').find('.amap-marker-label').toggle();
+        })
+    </script>
+</body>
+
+</html>

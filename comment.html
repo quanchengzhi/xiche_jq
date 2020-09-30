@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>评价</title>
+    <link media="all" rel="stylesheet" href="static/css/init.css" type="text/css">
+    <link media="all" rel="stylesheet" href="static/css/index.css" type="text/css">
+    <style>
+        .content {
+            width: 600px;
+            margin: 0 auto;
+            padding-top: 20px;
+        }
+
+        .title {
+            font-size: 14px;
+            background: #dfdfdf;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+       
+
+        .block .star_score {
+            float: left;
+        }
+
+        .star_list {
+            height: 21px;
+            margin: 50px;
+            line-height: 21px;
+        }
+
+        .block p,
+        .block .attitude {
+            padding-left: 20px;
+            line-height: 21px;
+            display: inline-block;
+        }
+
+        .block p span {
+            color: #C00;
+            font-size: 16px;
+            font-family: Georgia, "Times New Roman", Times, serif;
+        }
+        .block{
+            position: absolute;
+            top: 0.14rem;
+            left: 0.92rem;
+        }
+        .star_score {
+            background: url(./static/img/stark2.png) ;
+            background-size: 0.32rem 0.21rem;
+            width: 1.6rem;
+            height: 0.21rem;
+            position: relative;
+        }
+
+        .star_score a {
+            height: 21px;
+            display: block;
+            text-indent: -999em;
+            position: absolute;
+            left: 0;
+        }
+
+        .star_score a:hover {
+            background: url(./static/img/stars2.png);
+            background-size: 0.32rem 0.21rem;
+            left: 0;
+        }
+
+        .star_score a.clibg {
+            background: url(./static/img/stars2.png);
+            background-size: 0.32rem 0.21rem;
+            left: 0;
+        }
+
+        #starttwo .star_score {
+            background: url(images/starky.png);
+        }
+
+        #starttwo .star_score a:hover {
+            background: url(images/starsy.png);
+            left: 0;
+        }
+
+        #starttwo .star_score a.clibg {
+            background: url(images/starsy.png);
+            left: 0;
+        }
+
+        /*星星样式*/
+        .show_number {
+            padding-left: 50px;
+            padding-top: 20px;
+        }
+
+        .show_number li {
+            width: 240px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-right: 5px;
+            margin-bottom: 20px;
+        }
+
+        .atar_Show {
+            background: url(./static/img/stark2.png);
+            width: 160px;
+            height: 21px;
+            position: relative;
+            float: left;
+        }
+
+        .atar_Show p {
+            background: url(./static/img/stars2.png);
+            left: 0;
+            height: 21px;
+            width: 134px;
+        }
+
+        .show_number li span {
+            display: inline-block;
+            line-height: 21px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+        
+
+    <div class="comWrapper">
+        <div id="startone" class="block clearfix">
+            <div class="star_score"></div>
+        </div>
+        <div class="comHead">
+            标准洗车
+
+        </div>
+        <div class="comContent clearfix">
+            <textarea name="" id="" cols="30" rows="10" placeholder="分享你的洗车体验，可以帮助更多的车主" maxlength="100"></textarea>
+            <span>最多100字</span>
+        </div>
+        <div class="comPicture">
+            <span class="usePic"><input class="usePic thisOpacity" type="file" name="cover" accept="image/*"
+                    capture="camera" multiple /></span><span class="usePic thisOpacity"><input
+                    class="usePic thisOpacity" type="file" name="cover" accept="image/*" capture="camera"
+                    multiple /></span><span class="usePic thisOpacity"><input class="usePic thisOpacity" type="file"
+                    name="cover" accept="image/*" capture="camera" multiple /></span>
+            <p>相关图片0/3张</p>
+        </div>
+        <a href="./index.html" class="comBtn">提交评价</a>
+    </div>
+    <script src="./static/js/rem.js"></script>
+    <script src="./static/js/jquery-1.9.1.js"></script>
+    <script src="./static/js/startScore.js"></script>
+    <script src="./static/js/common.js"></script>
+    <script>
+        scoreFun($("#startone"))
+        scoreFun($("#starttwo"), {
+          fen_d: 22,//每一个a的宽度
+          ScoreGrade: 5//a的个数 10或者
+        })
+      </script>
+    <script>
+        // $(function () {
+        //     var realSort;
+        //     $('.comHead span').on('click', function () {
+        //         if($('.comContent textarea').val()){
+        //         $('.comBtn').css('opacity','1')
+        //     }else{
+        //         $('.comBtn').css('opacity','0.5')
+        //     }
+        //         $('.sort').css('background', 'url("./static/img/list_icon_star_nor.png") no-repeat').css('backgroundSize', '0.16rem 0.16rem')
+        //         realSort = $(this).prop('id');
+        //         for (var i = 0; i <= realSort; i++) {
+        //             $('#' + i).css('background', 'url("./static/img/list_icon_star_sel.png") no-repeat').css('backgroundSize', '0.16rem 0.16rem')
+        //         }
+        //     })
+        // })
+        $('.comContent textarea').on('input', function () {
+            if ($('.comContent textarea').val()) {
+                $('.comBtn').css('opacity', '1')
+            } else {
+                $('.comBtn').css('opacity', '0.5')
+            }
+        })
+        $(function () {
+            //获取浏览器的userAgent,并转化为小写
+            var ua = navigator.userAgent.toLowerCase();
+            //判断是否是苹果手机，是则是true
+            var isIos = (ua.indexOf('iphone') != -1) || (ua.indexOf('ipad') != -1);
+            if (isIos) {
+                $("input:file").removeAttr("capture");
+            };
+            var num = 0;
+            $("input:file").change(function () {
+                var thisUrl = 'url("./static/img/' + $(this)[0].files[0].name + '")';
+                if (num < 2 && $(this).parent().next().hasClass('thisOpacity')) {
+
+                    num++;
+                } else if (num == 2 && $(this).parent().next().text() == '相关图片2/3张') {
+                    num++;
+                }
+                $(this).parent().next().removeClass('thisOpacity');
+                $(this).parent().css('background', 'url("./static/img/' + $(this)[0].files[0].name + '") no-repeat center').css('backgroundSize', '1.12rem 1.12rem');
+                $('.comPicture p').text('相关图片' + num + '/3张');
+            })
+        })
+    </script>
+</body>
+
+</html>

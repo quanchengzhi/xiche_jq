@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>登录</title>
+    <link media="all" rel="stylesheet" href="static/css/init.css" type="text/css">
+    <link media="all" rel="stylesheet" href="static/css/index.css" type="text/css">
+</head>
+
+<body>
+    <div class="lgWrapper">
+        <div class="welcome">
+            <h1>你好，<br>欢迎来到车多</h1>
+        </div>
+        <div class="logInfo">
+            <p><input class="telNum" type="tel" maxlength="11" placeholder="请输入手机号"></p>
+            <p><input class="codeNum" type="tel" maxlength="6" placeholder="请输入手机验证码"><span class="getCode">获取验证码</span></p>
+        </div>
+        <div class="login"><input type="submit" value="登录"></div>
+        <div class="lgBottom">登录即表示您同意<em>《车多服务协议》</em></div>
+    </div>
+    <script src="./static/js/rem.js"></script>
+    <script src="./static/js/jquery-1.9.1.js"></script>
+    <script src="./static/js/common.js"></script>
+    <script>
+        var countdown = 3;
+
+        function setTime(obj) {
+            if (countdown == 0) {
+                obj.prop('disabled', false);
+                obj.css({ color: "#2782F4" });
+                obj.text("重新发送");
+                countdown = 3;
+                return;
+            } else {
+                obj.prop('disabled', true);
+                obj.css({ color: "#A7ABAA" });
+                obj.text("已发送 (" + countdown + "s)");
+                countdown--;
+            }
+            setTimeout(function () { setTime(obj) }, 1000);
+        }
+        $('.getCode').click(function () {
+            var obj = $(this);
+            if(reg.test($('.telNum').val())){
+                setTime(obj);
+            }
+        });
+        var reg = /^\d{11}$/,
+            reg2 = /^\d{6}$/;
+        $('.login').on('click', function () {
+            if (reg.test($('.telNum').val()) &&  reg2.test($('.codeNum').val())) {
+                window.location.href = './index.html'
+            } 
+        })
+        $('.logInfo input').on('input',function(){
+            if ($('.telNum').val() &&  $('.codeNum').val()) {
+                $('.login input').css('opacity','1')
+            }else{
+                $('.login input').css('opacity','0.5')
+            } 
+        })
+    </script>
+</body>
+
+</html>
